@@ -20,15 +20,15 @@ export default function App() {
   const resetVotes = () => {
     setVotes({ good: 0, neutral: 0, bad: 0 })
   }
-  let totalVotes = votes.good + votes.neutral + votes.bad;
+  const totalVotes = votes.good + votes.neutral + votes.bad;
+  const positiveRates = totalVotes ? Math.round((votes.good / totalVotes) * 100) : 0;
 
-  // let positiveRates = totalVotes ? Math.round((votes.good / totalVotes) * 100);
   return (
     <>
       <div className={css.app}>
         <CafeInfo />
         <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={() => true} />
-        <VoteStats votes={votes}  totalVotes={totalVotes}/>
+        <VoteStats votes={votes}  totalVotes={totalVotes} positiveRates={positiveRates}/>
       </div>      
     </>
   )
