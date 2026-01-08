@@ -3,6 +3,7 @@ import css from './App.module.css'
 import CafeInfo from '../CafeInfo/CafeInfo'
 import type { Votes, VoteType} from '../../types/votes';
 import VoteOptions from '../VoteOptions/VoteOptions';
+import VoteStats from '../VoteStats/VoteStats';
 
 export default function App() {
   const [votes, setVotes] = useState<Votes>({
@@ -19,12 +20,14 @@ export default function App() {
   const resetVotes = () => {
     setVotes({ good: 0, neutral: 0, bad: 0 })
   }
+  
+  // let positiveRates = totalVotes ? Math.round((votes.good / totalVotes) * 100);
   return (
     <>
       <div className={css.app}>
         <CafeInfo />
         <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={() => true} />
-        
+        <VoteStats votes={votes}  />
       </div>      
     </>
   )
